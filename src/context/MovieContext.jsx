@@ -6,14 +6,13 @@ export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const apiKey = "80ad7e890e3cb430af1b47af6b778720"; 
+  const apiKey = import.meta.env.VITE_TMDB_KEY;
 
   const searchMovies = async (query) => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&language=pt-BR`
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/search/movie?api_key=${apiKey}&query=${query}`);
+      
       const data = await response.json();
       setMovies(data.results || []);
     } catch (error) {
