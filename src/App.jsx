@@ -10,8 +10,9 @@ function App() {
       <HashRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Navigate to="/search/batman" />} />
+          <Route path="/" element={<SearchResults />} />
           <Route path="/search/:query" element={<SearchResults />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </HashRouter>
     </MovieProvider>
